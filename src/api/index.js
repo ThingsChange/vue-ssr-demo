@@ -1,5 +1,5 @@
 // this is aliased in webpack config based on server/client build
-import { createAPI } from './create-api-server'
+import { createAPI } from './create-api-client'
 
 const logRequests = !!process.env.DEBUG_API
 
@@ -17,6 +17,7 @@ if (api.onServer) {
 }
 
 function warmCache () {
+  console.log('这里是 api.cachedIds 的结果-------------', api.cachedIds)
   fetchItems((api.cachedIds.top || []).slice(0, 30))
   setTimeout(warmCache, 1000 * 60 * 15)
 }

@@ -39,7 +39,7 @@ const handleRequest = async (ctx, next) => {
   }
 
   ctx.res.setHeader('Content-Type', 'text/html')
-  res.setHeader("Server", serverInfo)
+  ctx.res.setHeader('Server', serverInfo)
   const context = {
     title: '我是用来测试vueSSR的',
     url: ctx.url

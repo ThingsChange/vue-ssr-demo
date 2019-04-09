@@ -27,5 +27,6 @@ export function createAPI ({ config, version }) {
       })
     })
   }
+  console.log('这里是 api的 的结果-------------', api)
   return api
 }

@@ -3,7 +3,7 @@ const koaStatic = require('koa-static')
 const path = require('path')
 const microcache = require('route-cache')
 const useMicroCache = process.env.MICRO_CACHE !== 'false'
-console.log('这里是 打包开始被 的结果-------------', 打包开始被)
+// console.log('这里是 打包开始被 的结果-------------', 打包开始被)
 const resolve = file => path.resolve(__dirname, file)
 const app = new Koa()
 
