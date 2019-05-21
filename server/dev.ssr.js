@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const send = require('send')
 const Router = require('koa-router')
-// 1、webpack配置文件
+// 读取webpack配置文件
 const webpackConfig = require('@vue/cli-service/webpack.config')
 const { createBundleRenderer } = require('vue-server-renderer')
 
@@ -18,6 +18,7 @@ serverCompiler.outputFileSystem = mfs
 // 3、监听文件修改，实时编译获取最新的 vue-ssr-server-bundle.json
 let bundle
 serverCompiler.watch({}, (err, stats) => {
+  console.log('这里是 文件变动了呀 的结果-------------', 10000000000000)
   if (err) {
     throw err
   }
@@ -42,14 +43,15 @@ const handleRequest = async ctx => {
     console.log(`proxy ${url}`)
     return await send(ctx, url, { root: path.resolve(__dirname, '../public') })
   }
-
+  console.log('这里是 url 的结果-------------', url)
+  console.log('这里是 客户端渲染 的结果-------------', 11111111111111111111111)
   // 4、获取最新的 vue-ssr-client-manifest.json
   const clientManifestResp = await axios.get('http://localhost:8080/vue-ssr-client-manifest.json')
   const clientManifest = clientManifestResp.data
 
   const renderer = createBundleRenderer(bundle, {
     runInNewContext: false,
-    template: fs.readFileSync(path.resolve(__dirname, '../src/index.temp.html'), 'utf-8'),
+    template: fs.readFileSync(path.resolve(__dirname, '../src/index.template.html'), 'utf-8'),
     clientManifest: clientManifest
   })
   const html = await renderToString(ctx, renderer)

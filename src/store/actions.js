@@ -1,7 +1,9 @@
 import {
   fetchUser,
+  fetchItem,
   fetchItems,
-  fetchIdsByType
+  fetchIdsByType,
+  fetchInvest
 } from '../api'
 
 export default {
@@ -20,6 +22,16 @@ export default {
     })
   },
 
+  FETCH_INVEST ({ commit, state }, query) {
+    return fetchInvest('', { cache: true, id: query.id, req: query.req }).then(res => {
+      commit('SET_INVEST', { id: query.id, res })
+    })
+  },
+  FETCH_ITEM ({ commit, state }, id) {
+    return fetchItem(id).then(res => {
+      commit('SET_ITEM', { id, res })
+    })
+  },
   FETCH_ITEMS: ({ commit, state }, { ids }) => {
     // on the client, the store itself serves as a cache.
     // only fetch items that we do not already have, or has expired (3 minutes)

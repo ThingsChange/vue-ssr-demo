@@ -8,7 +8,12 @@ export default {
   SET_LIST: (state, { type, ids }) => {
     state.lists[type] = ids
   },
-
+  SET_ITEM (state, { id, item }) {
+    Vue.set(state.items, id, item)
+  },
+  SET_INVEST (state, { id, res }) {
+    Vue.set(state.invest, id, res)
+  },
   SET_ITEMS: (state, { items }) => {
     items.forEach(item => {
       if (item) {

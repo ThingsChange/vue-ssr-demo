@@ -14,7 +14,10 @@ export default {
 
     return lists[activeType].slice(start, end)
   },
-
+  investInfo (state) {
+    console.log('111111111111111-------------',state.invest )
+    return state.invest
+  },
   // items that should be currently displayed.
   // this Array may not be fully fetched.
   activeItems (state, getters) {

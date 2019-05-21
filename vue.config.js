@@ -5,12 +5,18 @@ const merge = require('lodash.merge')
 const TARGET_NODE = process.env.WEBPACK_TARGET === 'node'
 const target = TARGET_NODE ? 'server' : 'client'
 const isDev = process.env.NODE_ENV !== 'production'
+const devServer = require('./build/prod.server')
 
 module.exports = {
   baseUrl: isDev ? 'http://127.0.0.1:8080' : '',
   devServer: {
+    historyApiFallback: true,
     headers: { 'Access-Control-Allow-Origin': '*' }
   },
+  /*
+    headers: { 'Access-Control-Allow-Origin': '*' }
+  } : devServer,
+*/
   css: {
     extract: false
   },
@@ -19,6 +25,11 @@ module.exports = {
     entry: `./src/entry-${target}.js`,
     // 对 bundle renderer 提供 source map 支持
     devtool: 'source-map',
+    resolve: {
+      alias: {
+        'create-api': `./create-api-${target}.js`
+      }
+    },
     target: TARGET_NODE ? 'node' : 'web',
     node: TARGET_NODE ? undefined : false,
     output: {
