@@ -10,7 +10,7 @@ let axios = require('axios')
 
 exports.get_search_data = function (key, start, end) {
   return axios({
-    url: 'https://bigdata.kaiyuan.net/bsdataopt/datascreen/invest',
+    url: 'https://your.test.com/bsdataopt/datascreen/invest',
     method: 'GET'
   })
 }

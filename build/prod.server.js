@@ -5,18 +5,9 @@
  * @note 干什么的呢？
  **/
 const path = require('path')
-const url = 'https://bigdata.kaiyuan.net'
+const url = ''
 const interfaceInvoke = {}
 const interfacePre = [
-  '/kydc-zuul',
-  '/bsdataopt/',
-  '/report/',
-  '/mysql',
-  '/kydc-base/',
-  '/monitor/',
-  '/monitorbusiness/',
-  '/dataApi',
-  '/admin',
   '/component'
 ].forEach(v => {
   interfaceInvoke[v] = {

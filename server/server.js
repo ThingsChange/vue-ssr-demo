@@ -103,8 +103,10 @@ const handleRequest = async (ctx, next) => {
     if (err) {
       return errorHandler(err)
     }
+    console.log('这里是 服务端渲染完毕2 的结果-------------', '服务端渲染完毕')
     microCache.set(req.url, html) // 设置当前缓存页面的内容
   })
+  console.log('这里是 返回浏览器 的结果-------------', '返回给浏览器')
   ctx.body = html
 }
 router.get('*', handleRequest)

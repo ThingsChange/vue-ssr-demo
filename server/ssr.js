@@ -13,7 +13,7 @@ const router = isDev ? require('./dev.ssr') : require('./server')
 const _cors = (ctx, next) => {
   // 指定服务器端允许进行跨域资源访问的来源域。可以用通配符*表示允许任何域的JavaScript访问资源，但是在响应一个携带身份信息(Credential)的HTTP请求时，必需指定具体的域，不能用通配符
   ctx.set('Access-Control-Allow-Origin', 'http://localhost:3000')
-  // ctx.set('Access-Control-Allow-Origin', 'https://bigdata.kaiyuan.net')
+  // ctx.set('Access-Control-Allow-Origin', 'https://your.test.com')
   // 指定服务器允许进行跨域资源访问的请求方法列表，一般用在响应预检请求上
   ctx.set('Access-Control-Allow-Methods', 'OPTIONS,POST,GET,HEAD,DELETE,PUT')
 

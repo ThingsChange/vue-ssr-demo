@@ -7,9 +7,6 @@ const createMicroCache = (maxAge = 5000) => LRU({ max: 100, maxAge })
 export function createAPI ({ baseUrl, timeout }) {
   let api
   const microCache = createMicroCache(timeout) // 设置数据多久过期
-
-  // this piece of code may run multiple times in development mode,
-  // so we attach the instantiated API to `process` to avoid duplications
   if (process.__API__) {
     api = process.__API__
   } else {
@@ -19,9 +16,7 @@ export function createAPI ({ baseUrl, timeout }) {
         url = baseUrl + url
         const key = md5(url + JSON.stringify(params))
         // 判断是否有缓存,直接返回缓存结果
-        console.log('这里是请求 url的结果-------------', url)
         if (params.cache && microCache.get(key)) {
-          console.log('返回缓存')
           return Promise.resolve(microCache.get(key))
         }
         let Cookie = ''
@@ -42,11 +37,8 @@ export function createAPI ({ baseUrl, timeout }) {
             if (params.cache && microCache) {
               microCache.set(key, res.data)
             }
-            // console.log('这里是 res.data 的结果-------------',123)
-            console.log('返回新数据', 'serverAPI')
             resolve(res.data)
           }).catch(error => {
-            console.log('这里是 服务端请求失败了呀 的结果-------------', 111111)
             reject(error)
           })
         })

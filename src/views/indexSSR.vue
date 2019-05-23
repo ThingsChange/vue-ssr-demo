@@ -41,11 +41,9 @@ export default {
       return this.$store.state.invest[this.$route.query.id] && this.$store.state.invest[this.$route.query.id].data || {}
     }
   },
-  // We only fetch the item itself before entering the view, because
-  // it might take a long time to load threads with hundreds of comments
-  // due to how the HN Firebase API works.
+  // 因为执行改代码的时候，组件还未挂载，获取不到this对象，所以要把store 路由信息等传递进来，这样可以同步了
   asyncData ({ store, route: { query: { id } }, req = {} }) {
-    return store.dispatch('FETCH_INVEST', { id, req:{} })
+    return store.dispatch('FETCH_INVEST', { id, req: {} })
   },
   methods: {
     investMoneyAndUser () {
@@ -69,6 +67,7 @@ export default {
     // investInfo: 'investMoneyAndUser'
   },
   created () {
+    console.log('这里是 created函数 的结果-------------', 123)
     // this.investMoneyAndUser()
   }
 }

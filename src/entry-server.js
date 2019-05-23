@@ -13,6 +13,7 @@ export default context => {
 
     // 等到 router 将可能的异步组件和钩子函数解析完
     router.onReady(() => {
+      console.log('这里是 entry-server 的结果-------------', '路由已就绪')
       const matchedComponents = router.getMatchedComponents()
       // 匹配不到的路由，执行 reject 函数，并返回 404
       if (!matchedComponents.length) {
@@ -28,8 +29,10 @@ export default context => {
           }
         })
       ).then(() => {
+        console.log('这里是服务器端 数据预处理已搞定 的结果-------------', '服务器端')
         context.serverError = false
         context.state = store.state
+        console.log('这里是服务器端 数据预处理已搞定 的结果2-------------', context)
         resolve(app)
       }).catch(error => {
         console.log('服务端渲染失败', 'entry-server')

@@ -18,7 +18,6 @@ serverCompiler.outputFileSystem = mfs
 // 3、监听文件修改，实时编译获取最新的 vue-ssr-server-bundle.json
 let bundle
 serverCompiler.watch({}, (err, stats) => {
-  console.log('这里是 文件变动了呀 的结果-------------', 10000000000000)
   if (err) {
     throw err
   }
