@@ -72,7 +72,7 @@ const handleRequest = async (ctx, next) => {
     return await send(ctx, url, { root: path.resolve(__dirname, '../dist') })
   }
   console.log(`proxy ${url}`)
-  if (/\/bsdataopt/.test(url)) {
+  if ( /\/bsdataopt/.test(url)) {
     console.log('这里是 接口 的结果-------------', 1111111111, ctx.url)
     ctx.set('Cache-Control', 'no-cache')
     ctx.set('Access-Control-Allow-Origin', '*')

@@ -71,7 +71,7 @@ router.onReady((currentRoute) => {
   // 使用 `router.beforeResolve()`，以便确保所有异步组件都 resolve。
   router.beforeResolve((to, from, next) => {
     console.log('before resolve invoked')
-    debugger
+    // debugger
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
     // 我们只关心非预渲染的组件

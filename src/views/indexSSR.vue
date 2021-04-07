@@ -2,11 +2,11 @@
   <div class="home">
     <!--<img alt="Vue logo" src="../assets/logo.png">-->
     <ul>
-      <li><span>在投123金额：</span><span>{{investInfo.investAmount}}</span></li>
+      <li><span>店铺ID：</span><span>{{investInfo.shopID}}</span></li>
       <p>换1行</p>
       <p>换2231行</p>
       <p>换3行</p>
-      <li><span>在1投用户数</span><span>{{investInfo.investUserNum}}</span></li>
+      <li><span>桌台描述：</span><span>{{investInfo.qrCodeInfo.tableTagStr}}</span></li>
         <router-link to="/about">关于</router-link>
       <hello-world></hello-world>
 <!--      <li><span>借款余额</span><span>{{borrowAmount}}</span></li>
@@ -24,7 +24,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import { fetchInvest } from '@/api/index.js'
+// import { fetchInvest } from '@/api/index.js'
 export default {
   name: 'home',
   data () {
@@ -38,12 +38,16 @@ export default {
   },
   computed: {
     investInfo () {
-      return this.$store.state.invest[this.$route.query.id] && this.$store.state.invest[this.$route.query.id].data || {}
+      // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+      this.$route.query.id = 11157
+      return (this.$store.state.invest[this.$route.query.id] && this.$store.state.invest[this.$route.query.id].data) || {}
     }
   },
   // 因为执行改代码的时候，组件还未挂载，获取不到this对象，所以要把store 路由信息等传递进来，这样可以同步了
-  asyncData ({ store, route: { query: { id } }, req = {} }) {
-    return store.dispatch('FETCH_INVEST', { id, req: {} })
+  asyncData (context) {
+    console.log('这里是 123 的结果-------------', 123)
+    // console.log('这里是 context 的结果-------------', context)
+    return context.store.dispatch('FETCH_INVEST', { id: 11157 })
   },
   methods: {
     investMoneyAndUser () {
