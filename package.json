@@ -14,7 +14,7 @@
     "dev": "concurrently \"npm run serve -- --host=127.0.0.1\" \"npm run dev:serve\" "
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "es6-promise": "^4.2.6",
     "firebase": "^5.9.2",
     "koa": "^2.5.3",
